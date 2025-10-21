@@ -15,14 +15,14 @@ java {
 
 group = 'org.cadixdev'
 archivesBaseName = project.name.toLowerCase()
-version = '0.1.0-SNAPSHOT'
+version = '0.1.1-GTNH'
 
 repositories {
     mavenCentral()
-    if (mercuryVersion.endsWith("-SNAPSHOT")) {
-        maven {
-            url 'https://oss.sonatype.org/content/groups/public/'
-        }
+    mavenLocal()
+    maven {
+        name = "gtnh"
+        url = uri("https://nexus.gtnewhorizons.com/repository/public/")
     }
 }
 
