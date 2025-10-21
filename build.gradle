@@ -90,26 +90,4 @@ publishing {
             }
         }
     }
-    repositories {
-        if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
-            maven {
-                url = !version.endsWith('-SNAPSHOT') ?
-                        'https://oss.sonatype.org/service/local/staging/deploy/maven2/' :
-                        'https://oss.sonatype.org/content/repositories/snapshots/'
-
-                credentials {
-                    username = ossrhUsername
-                    password = ossrhPassword
-                }
-            }
-        }
-    }
-}
-
-if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
-    apply plugin: 'signing'
-    signing {
-        required { !version.endsWith('-SNAPSHOT') && gradle.taskGraph.hasTask(tasks.publish) }
-        sign publishing.publications.mavenJava
-    }
 }
